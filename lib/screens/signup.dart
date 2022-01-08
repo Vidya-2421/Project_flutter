@@ -11,17 +11,17 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 
 import 'secondscreen.dart';
-class LoginPage extends StatefulWidget{
-  const LoginPage({Key? key}): super(key:key);
+class SignUpPage extends StatefulWidget{
+  const  SignUpPage({Key? key}): super(key:key);
 
   @override
-  _LoginPageState createState() => _LoginPageState();
+  _SignUpPageState createState() => _SignUpPageState();
 }
 
-class _LoginPageState extends State<LoginPage>{
+class _SignUpPageState extends State<SignUpPage>{
   double _headerHeight = 250;
   final  _formKey = GlobalKey<FormState>();
-  User userL = new User();
+  User userL = new User( userName: '', password: '', email: '',);
   Auth auth = new Auth();
   void showMessage(BuildContext context)
   {
@@ -55,7 +55,7 @@ class _LoginPageState extends State<LoginPage>{
                       style: TextStyle(fontSize: 60, fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      'Signin into your account',
+                      'Signup into your account',
                       style: TextStyle(color: Colors.grey),
                     ),
                     SizedBox(height: 30.0),
@@ -93,6 +93,33 @@ class _LoginPageState extends State<LoginPage>{
                                     return "Please enter Password";
 
                                   }
+                                  else if(value.length<6)
+                                      return "Please enter password of length 6";
+                                  else
+                                      return null;
+                                },
+                                onSaved: (value){
+                                  userL.password=value!;
+                                }
+                                
+                                
+                              
+                              ),
+                              decoration: ThemeHelper().inputBoxDecorationShaddow(),
+                            ),
+                            SizedBox(height: 15.0),
+                            Container(
+                              child: TextFormField(
+                                obscureText: true,
+                                decoration: ThemeHelper().textInputDecoration('Confirm Password', 'Renter your password'),
+                                validator: (value){
+                                  if(value!.isEmpty)
+                                  {
+                                    return "Please enter Password";
+
+                                  }
+                                  else if(value.length<6)
+                                      return "Please enter password of length 6";
                                   else
                                       return null;
                                 },
@@ -129,19 +156,13 @@ class _LoginPageState extends State<LoginPage>{
                               decoration: ThemeHelper().inputBoxDecorationShaddow(),
                             ),
                             SizedBox(height: 15.0),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                              Container(
-                                width:150,
-                                height:75,
-                                
+                            Container(
                               decoration: ThemeHelper().buttonBoxDecoration(context),
                               child: ElevatedButton(
                                 style: ThemeHelper().buttonStyle(),
                                 child: Padding(
                                   padding: EdgeInsets.fromLTRB(40, 10, 40, 10),
-                                  child: Text('Sign In'.toUpperCase(), style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.white),),
+                                  child: Text('Register'.toUpperCase(), style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),),
                                 ),
                                 onPressed: () async {
                                   //After successful login we will redirect to profile page. Let's create profile page now
@@ -149,51 +170,17 @@ class _LoginPageState extends State<LoginPage>{
                                      _formKey.currentState!.save();
                                   //bool response = false;
                                   //response = auth.authUser(userL.emailID,userL.password);
-                                  bool response=await auth.authUser(userL);
-                                  if (response == true) {
-                                     //Navigator.pushNamed(context,SecondViewRoute);
-                                     Navigator.push(
-                                     context,
-                                     MaterialPageRoute(
-                                     builder: (context) =>SecondScreen(
-                                       userName:userL.userName, user:userL,
-                                     ),
-                ),
-              );
-                                  }
-                                  else
-                                     
-                                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Login Unsuccessful')));
-                                      
-             
-                                   
-                                  }
-                                }
-                                  //Navigator.pushNamed(context, SecondViewRoute);
-                                
-                              ),
-                            ),
-                            SizedBox(width: 5),
-                            Container(
-                              width: 150,
-                              height: 75,
-                              decoration: ThemeHelper().buttonBoxDecoration(context),
-                              child: ElevatedButton(
-                                style: ThemeHelper().buttonStyle(),
-                                child: Padding(
-                                  padding: EdgeInsets.fromLTRB(40, 10, 40, 10),
-                                  child: Text('Sign Up'.toUpperCase(), style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.white),),
-                                ),
-                                onPressed: () async {
-                                  //After successful login we will redirect to profile page. Let's create profile page now
+                                  //bool response=await auth.authUser(userL);
+                                  await auth.addUser(userL);
                                   
-                                  Navigator.pushNamed(context, SignupRoute);
+                                  //if (response == true) {
+                                  Navigator.pushNamed(context, LoginViewRoute);
+                                 }
                                 }
+                               // }
                                 
                               ),
                             ),
-
-                            ],)
                            
                            
                           ],

@@ -25,9 +25,18 @@ _navigatetohome() async
  Widget build(BuildContext context){
    return Scaffold(
      body:Center(
-       child:Container(
-         child: Text("Welcome to Socialize",),
-       )
+       
+       child:Column(
+         mainAxisAlignment : MainAxisAlignment.center,
+         children: [
+         
+         Image.asset('assets/images/icon.png',fit: BoxFit.cover,),
+         Text("Welcome to Socialize",style: TextStyle(
+         fontSize: 24,
+    fontWeight: FontWeight.bold),),
+
+       ],)
+
        )
        
 
@@ -35,3 +44,4 @@ _navigatetohome() async
    
  }
  }
+ 

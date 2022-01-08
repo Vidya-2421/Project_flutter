@@ -1,14 +1,51 @@
 import 'package:flutter/material.dart';
+import 'package:project_flutter/model/user.dart';
+import 'package:project_flutter/routing_constants.dart';
+import 'package:project_flutter/theme_helper.dart';
 
+class LogOut extends StatefulWidget {
+  const LogOut({ Key? key }) : super(key: key);
+
+  @override
+  _LogOutState createState() => _LogOutState();
+}
+
+class _LogOutState extends State<LogOut> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child:Align(
+        alignment: Alignment.topRight,
+        child: ElevatedButton(
+                                style: ThemeHelper().buttonStyle(),
+                                child: Padding(
+                                  padding: EdgeInsets.fromLTRB(40, 10, 40, 10),
+                                  child: Text('Log Out'.toUpperCase(), style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),),
+                                ),
+                                onPressed:() {
+                                  Navigator.pushNamed(context,SecondViewRoute);
+                                }
+        ,
+      )
+       ) ,
+      
+    );
+  }
+}
 class SecondScreen extends StatelessWidget {
+  //User u=new User();
+  final User user;
+  SecondScreen({ required String userName,required this.user});
+  
    @override
    Widget build(BuildContext context) {
+    bool res;
     return Material(
       
     child: 
     Column(children: [
       Container(
-      margin: EdgeInsets.only(left:20.0, top:10,right:90),
+      //margin: EdgeInsets.only(left:20.0, top:10,right:90),
       child:Row(
         children: [
            Align(
@@ -27,171 +64,190 @@ class SecondScreen extends StatelessWidget {
           ),
            ),
            Column(children: [
-             new Text("Vidya",style:TextStyle(fontSize: 28, color: Colors.black) ,),
+             new Text(user.userName,style:TextStyle(fontSize: 28, color: Colors.black) ,),
           new Text("India",style:TextStyle(fontSize: 22, color: Colors.black)),
-           ],)
-          
+           ],),
+                      
         ],
+        
       ),
     ),
     //SizedBox( height:0),
     Container(
-    margin: EdgeInsets.only(left:30.0, top:20,right:90),
-     child: Row(
-     mainAxisAlignment: MainAxisAlignment.spaceAround,
-       children: [
-        RotatedBox(quarterTurns:3 ,
-         child:Text("About")),
-          
-       //Spacer(flex:1,),
-       Container(
-          height: 100.0,
-          width: 100.0,
-          color: Colors.transparent,
-          child: Container(
-            decoration: BoxDecoration(
-                color: Colors.lightBlue,
-                
-                borderRadius: BorderRadius.all(Radius.circular(10.0))),
-            child:Center(child:new Text("27k Followers",
-              style: TextStyle(fontSize: 22, color: Colors.white), 
-                textAlign: TextAlign.center,),
-            ),),
+      
+    //margin: EdgeInsets.only(left:30.0, top:20,right:90),
+     
+     child: SingleChildScrollView(
+       scrollDirection: Axis.horizontal,
+       child: Row(
+      // mainAxisAlignment: MainAxisAlignment.spaceAround,
+         children: [
+          RotatedBox(quarterTurns:3 ,
+           child:Text("About",style: TextStyle(fontWeight: FontWeight.bold),)),
+           SizedBox(width:10) ,
+         //Spacer(flex:1,),
+         Container(
+         
+            height: 100.0,
+            width: 100.0,
+            color: Colors.transparent,
+            child: Container(
+              decoration: BoxDecoration(
+                  color: Colors.lightBlue,
+                  
+                  borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                  
+              child:Center(child:new Text("20 Videos",
+                style: TextStyle(fontSize: 22, color: Colors.white), 
+                  textAlign: TextAlign.center,),
+              ),),
 
-            
-        ),
-        //Spacer(flex:1,),
-        
-        //Spacer(flex:1,),
-        
-        //Spacer(flex:1,),
-        Container(
-          height: 100.0,
-          width: 100.0,
-          color: Colors.transparent,
-          child: Container(
-            decoration: BoxDecoration(
-                color: Colors.lightBlue,
-                
-                borderRadius: BorderRadius.all(Radius.circular(10.0))),
-            child:Center(child: new Text("27 shots",
-              style: TextStyle(fontSize: 22, color: Colors.white), 
-                textAlign: TextAlign.center,),
-            ),),
-            
-        ),
-       // Spacer(flex:1,),
-        Container(
-          height: 100.0,
-          width: 100.0,
-          color: Colors.transparent,
-          child: Container(
-            decoration: BoxDecoration(
-                color: Colors.lightBlue,
-                
-                borderRadius: BorderRadius.all(Radius.circular(10.0))),
-            child:IconButton(
-            icon: Icon(Icons.camera),
-            color: Colors.white,
-            onPressed: () {
-           },
-            ),
-          ),
-            
-        ),
-        //Spacer(flex:1,),
-        Container(
-          height: 100.0,
-          width: 100.0,
-          color: Colors.transparent,
-          child: Container(
-            decoration: BoxDecoration(
-                color: Colors.lightBlue,
-                
-                borderRadius: BorderRadius.all(Radius.circular(10.0))),
-            child:IconButton(
-            icon: Icon(Icons.photo),
-            color: Colors.white,
-            onPressed: () {
               
-            },
-            ),
           ),
+          //Spacer(flex:1,),
+          
+          //Spacer(flex:1,),
+          
+          //Spacer(flex:1,),
+           SizedBox(width:10) ,
+          Container(
+            height: 100.0,
+            width: 100.0,
             
-        ),
-        //Spacer(flex:1,),
-        Container(
-          height: 100.0,
-          width: 100.0,
-          color: Colors.transparent,
-          child: Container(
-            decoration: BoxDecoration(
-                color: Colors.lightBlue,
-                
-                borderRadius: BorderRadius.all(Radius.circular(10.0))),
-            child:IconButton(
-            icon: Icon(Icons.camera),
-            color: Colors.white,
-            onPressed: () {
+            //color: Colors.transparent,
+            child: Container(
               
-            },
-            ),
+              decoration: BoxDecoration(
+                  color: Colors.lightBlue,
+                  
+                  borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                  
+              child:Center(child:new Text("20 Shots",
+                style: TextStyle(fontSize: 22, color: Colors.white,), 
+                  textAlign: TextAlign.center,),
+              ),),
+              
           ),
-            
-        ),
-        //Spacer(flex:1,),
-        Container(
-          height: 100.0,
-          width: 100.0,
-          //color: Colors.transparent,
-          child: Container(
-            decoration: BoxDecoration(
-            color: Colors.lightBlue,
-            borderRadius: BorderRadius.all(Radius.circular(10.0))),
-            child:IconButton(
-            icon: Icon(Icons.video_camera_front),
-            color: Colors.white,
-            onPressed: () {
+         // Spacer(flex:1,),
+         SizedBox(width:10) ,
+          Container(
+            height: 100.0,
+            width: 100.0,
+            //color: Colors.transparent,
+            child: Container(
+              decoration: BoxDecoration(
+                  color: Colors.lightBlue,
+                  
+                  borderRadius: BorderRadius.all(Radius.circular(10.0))),
+              child:IconButton(
+              icon: Icon(Icons.camera),
+              color: Colors.white,
+              onPressed: () {
+             },
+              ),
+            ),
+              
+          ),
+          //Spacer(flex:1,),
+          SizedBox(width:10) ,
+          Container(
+            height: 100.0,
+            width: 100.0,
+            //color: Colors.transparent,
+            child: Container(
+              decoration: BoxDecoration(
+                  color: Colors.lightBlue,
+                  
+                  borderRadius: BorderRadius.all(Radius.circular(10.0))),
+              child:IconButton(
+              icon: Icon(Icons.photo),
+              color: Colors.white,
+              onPressed: () {
+                
               },
-            )
-          ),
-        ),
-        //Spacer(flex:1,),
-            Container(
-          height: 100.0,
-          width: 100.0,
-          color: Colors.transparent,
-          child: Container(
-            decoration: BoxDecoration(
-                color: Colors.lightBlue,
-                
-                borderRadius: BorderRadius.all(Radius.circular(10.0))),
-            child:IconButton(
-            icon: Icon(Icons.message),
-            color: Colors.white,
-            onPressed: () {
-              
-            },
-            )
-          ),
+              ),
             ),
-       ],),
+              
+          ),
+          //Spacer(flex:1,),
+          SizedBox(width:10) ,
+          Container(
+            height: 100.0,
+            width: 100.0,
+            //color: Colors.transparent,
+            child: Container(
+              decoration: BoxDecoration(
+                  color: Colors.lightBlue,
+                  
+                  borderRadius: BorderRadius.all(Radius.circular(10.0))),
+              child:IconButton(
+              icon: Icon(Icons.camera),
+              color: Colors.white,
+              onPressed: () {
+                
+              },
+              ),
+            ),
+              
+          ),
+          //Spacer(flex:1,),
+          SizedBox(width:10) ,
+          Container(
+            height: 100.0,
+            width: 100.0,
+            //color: Colors.transparent,
+            child: Container(
+              decoration: BoxDecoration(
+              color: Colors.lightBlue,
+              borderRadius: BorderRadius.all(Radius.circular(10.0))),
+              child:IconButton(
+              icon: Icon(Icons.video_camera_front),
+              color: Colors.white,
+              onPressed: () {
+                },
+              )
+            ),
+          ),
+          //Spacer(flex:1,),
+          SizedBox(width:10) ,
+              Container(
+            height: 100.0,
+            width: 100.0,
+            //color: Colors.transparent,
+            child: Container(
+              decoration: BoxDecoration(
+                  color: Colors.lightBlue,
+                  
+                  borderRadius: BorderRadius.all(Radius.circular(10.0))),
+              child:IconButton(
+              icon: Icon(Icons.message),
+              color: Colors.white,
+              onPressed: () {
+                
+              },
+              )
+            ),
+              ),
+         ],),
+     ),
       ),
       
       SizedBox( height:10),
-     Container(
+     SingleChildScrollView(
+       scrollDirection: Axis.horizontal,
      //margin: EdgeInsets.only(left:30.0,top:15,right:90),
       child:Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       
        children: [
          RotatedBox(quarterTurns:3 ,
-         child:Text(" Projects")),
+         child:Text(" Projects",style: TextStyle(fontWeight: FontWeight.bold),)),
          //Spacer(flex:1,),
+         SizedBox(width:10) ,
         Container(
           height: 100.0,
           width: 200.0,
-          color: Colors.transparent,
+          //color: Colors.transparent,
           child: Container(
             decoration: BoxDecoration(
                 gradient: LinearGradient(
@@ -206,10 +262,11 @@ class SecondScreen extends StatelessWidget {
             )
         ),
          //Spacer(flex:1,),
+         SizedBox(width:10) ,
         Container(
           height: 100.0,
           width: 200.0,
-          color: Colors.transparent,
+          //color: Colors.transparent,
           child: Container(
             decoration: BoxDecoration(
                 gradient: LinearGradient(
@@ -224,10 +281,11 @@ class SecondScreen extends StatelessWidget {
             
           )
         ),
+        SizedBox(width:10) ,
         Container(
           height: 100.0,
           width: 200.0,
-          color: Colors.transparent,
+          //color: Colors.transparent,
           child: Container(
             decoration: BoxDecoration(
                gradient: LinearGradient(
@@ -241,11 +299,11 @@ class SecondScreen extends StatelessWidget {
                 textAlign: TextAlign.center,),),
           )
         ),
-
+        SizedBox(width:10) ,
         Container(
           height: 100.0,
           width: 200.0,
-          color: Colors.transparent,
+         // color: Colors.transparent,
           child: Container(
             decoration: BoxDecoration(
                 gradient: LinearGradient(
@@ -263,98 +321,109 @@ class SecondScreen extends StatelessWidget {
        ],),
      ),
      SizedBox(height: 20,),
-     Container(
-       margin: EdgeInsets.only(left:0.0, top:20,right:90),
+     SingleChildScrollView(
+       scrollDirection: Axis.horizontal,
+       //margin: EdgeInsets.only(left:0.0, top:20,right:90),
        child:Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
            RotatedBox(quarterTurns:3 ,
-         child:Text("Spots")),
+         child:Text("Spots",style: TextStyle(fontWeight: FontWeight.bold),)),
           //Spacer(flex:1,),
+          SizedBox(width:10) ,
            Container(
           height: 200.0,
           width: 150.0,
-          color: Colors.transparent,
+          //color: Colors.transparent,
           child: Container(
             decoration: BoxDecoration(
                 color: Colors.grey,
                 
                 borderRadius: BorderRadius.all(Radius.circular(10.0))),
-            child: Image.asset('assets/images/snowfall.jpg',fit: BoxFit.cover,)
+            child: Image.asset('assets/images/london.jpg',fit: BoxFit.cover,)
+            
             ),
             
         ),
+        SizedBox(width:10) ,
        // Spacer(flex:1,),
         Container(
           height: 200.0,
           width: 150.0,
-          color: Colors.transparent,
+         // color: Colors.transparent,
           child: Container(
             decoration: BoxDecoration(
                 color: Colors.grey,
                 
                 borderRadius: BorderRadius.all(Radius.circular(10.0))),
-            child: Image.asset('assets/images/waterfall.jpeg',fit: BoxFit.cover,)
+            child: Image.asset('assets/images/spring.jpg',fit: BoxFit.cover,)
             ),
             
         ),
         //Spacer(flex:1,),
+        SizedBox(width:10),
+        
         Container(
           height: 200.0,
           width: 150.0,
-          color: Colors.transparent,
+         // color: Colors.transparent,
           
           child: Container(
             decoration: BoxDecoration(
                 //color: Colors.grey,
                borderRadius: BorderRadius.all(Radius.circular(10.0))),
                 
-            child:Image.asset('assets/images/monuments.jpg',fit: BoxFit.cover,)
+            child:Image.asset('assets/images/snowfall.jpg',fit: BoxFit.cover,)
             ),
             
         ),
+        SizedBox(width:10) ,
                //Spacer(flex:1,),
         Container(
           height: 200.0,
           width: 150.0,
-          color: Colors.transparent,
+          //color: Colors.transparent,
           child: Container(
             decoration: BoxDecoration(
                 color: Colors.grey,
                 
                 borderRadius: BorderRadius.all(Radius.circular(10.0))),
-            child:Image.asset('assets/images/water.jpeg',fit: BoxFit.fill,)
+            child:Image.asset('assets/images/river.jpeg',fit: BoxFit.fill,)
             ),
             
         ),
+        SizedBox(width:10) ,
         //Spacer(flex:1,),
         Container(
           height: 200.0,
           width: 150.0,
-          color: Colors.transparent,
+          //color: Colors.transparent,
           child: Container(
             decoration: BoxDecoration(
                 color: Colors.grey,
                 
-                borderRadius: BorderRadius.all(Radius.circular(10.0))),
-            child:Image.asset('assets/images/Mountains.jpg',fit: BoxFit.fill,)
+               borderRadius: BorderRadius.all(Radius.circular(10.0))),
+            child:Image.asset('assets/images/sky.jpg',fit: BoxFit.fill,)
             ),
             
         ),
+        SizedBox(width:10) ,
          Container(
           height: 200.0,
           width: 150.0,
-          color: Colors.transparent,
+         // color: Colors.transparent,
           child: Container(
             decoration: BoxDecoration(
                 color: Colors.grey,
                 
-                borderRadius: BorderRadius.all(Radius.circular(10.0))),
-            child:Image.asset('assets/images/tulips.jpg',fit: BoxFit.fill,)
+               borderRadius: BorderRadius.all(Radius.circular(10.0))),
+            child:Image.asset('assets/images/scenery.jpg',fit: BoxFit.fill,)
             ),
             
-        )
+        ),
+
          ],
+         
 
        ) ,
      )
