@@ -20,6 +20,7 @@ class SignUpPage extends StatefulWidget{
 
 class _SignUpPageState extends State<SignUpPage>{
   double _headerHeight = 250;
+  late String ?pass;
   final  _formKey = GlobalKey<FormState>();
   User userL = new User( userName: '', password: '', email: '',);
   Auth auth = new Auth();
@@ -88,7 +89,10 @@ class _SignUpPageState extends State<SignUpPage>{
                                 obscureText: true,
                                 decoration: ThemeHelper().textInputDecoration('Password', 'Enter your password'),
                                 validator: (value){
+                                   pass=value;
+              
                                   if(value!.isEmpty)
+
                                   {
                                     return "Please enter Password";
 
@@ -118,9 +122,9 @@ class _SignUpPageState extends State<SignUpPage>{
                                     return "Please enter Password";
 
                                   }
-                                  else if(value.length<6)
-                                      return "Please enter password of length 6";
-                                  else
+                                   if(value!=pass)
+                                     return "Password does not match";
+                                   else
                                       return null;
                                 },
                                 onSaved: (value){
@@ -135,7 +139,7 @@ class _SignUpPageState extends State<SignUpPage>{
                             SizedBox(height: 30.0),
                             Container(
                               child: TextFormField(
-                                obscureText: true,
+                                //obscureText: true,
                                 decoration: ThemeHelper().textInputDecoration('EmailId', 'Enter your EmailId'),
                                 validator: (value){
                                   if(value!.isEmpty)
