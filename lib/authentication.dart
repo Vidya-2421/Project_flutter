@@ -27,7 +27,7 @@ class Auth extends Model{
     
     return false;
   }
-
+  
 }
 /*import 'package:project_flutter/model/user.dart';
 import 'package:scoped_model/scoped_model.dart';

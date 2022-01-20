@@ -23,6 +23,7 @@ class _LoginPageState extends State<LoginPage>{
   final  _formKey = GlobalKey<FormState>();
   User userL = new User();
   Auth auth = new Auth();
+  var _textcontroller=new TextEditingController();
   void showMessage(BuildContext context)
   {
     Scaffold.of(context).showSnackBar(
@@ -66,6 +67,7 @@ class _LoginPageState extends State<LoginPage>{
                             
                             Container(
                               child: TextFormField(
+                                controller:_textcontroller,
                                 decoration: ThemeHelper().textInputDecoration('User Name', 'Enter your user name'),
                                 validator: (value){
                                   if(value!.isEmpty)
@@ -108,7 +110,7 @@ class _LoginPageState extends State<LoginPage>{
                             SizedBox(height: 30.0),
                             Container(
                               child: TextFormField(
-                                obscureText: true,
+                                //obscureText: true,
                                 decoration: ThemeHelper().textInputDecoration('EmailId', 'Enter your EmailId'),
                                 validator: (value){
                                   if(value!.isEmpty)
@@ -151,15 +153,16 @@ class _LoginPageState extends State<LoginPage>{
                                   //response = auth.authUser(userL.emailID,userL.password);
                                   bool response=await auth.authUser(userL);
                                   if (response == true) {
-                                     //Navigator.pushNamed(context,SecondViewRoute);
+                                    print(_textcontroller);
+                                    print("\n\n\n\n");
+                                    
+                                     //Navigator.pushNamed(context,SecondViewRoute,arguments: _textcontroller.text);
                                      Navigator.push(
                                      context,
                                      MaterialPageRoute(
-                                     builder: (context) =>SecondScreen(
-                                       userName:userL.userName, user:userL,
-                                     ),
-                ),
-              );
+                                     builder: (context) =>SecondScreen(userName:userL.userName,user:userL
+                                     )));
+                                      
                                   }
                                   else
                                      

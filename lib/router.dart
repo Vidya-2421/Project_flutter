@@ -17,10 +17,10 @@ Route <dynamic> generateRoute(RouteSettings settings)
     case HomeViewRoute:return MaterialPageRoute(builder: (context)=>Splash());
     case LoginViewRoute:
      return MaterialPageRoute(builder: (context)=>LoginPage());
-    case SecondViewRoute: return MaterialPageRoute(builder: (context)=>SecondScreen(user:userL, userName: '',));
+    case SecondViewRoute: return MaterialPageRoute(builder: (context)=>SecondScreen(user: userL, userName: '',));
     case SignupRoute:return MaterialPageRoute(builder:(context)=>SignUpPage());
      default:
-     return MaterialPageRoute(builder: (context)=>SecondScreen(user:userL, userName: '',));
+     return MaterialPageRoute(builder: (context)=>SecondScreen(user: userL, userName: '',));
   }
 
 }

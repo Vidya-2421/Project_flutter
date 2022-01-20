@@ -1,55 +1,72 @@
+//import 'dart:js';
+
 import 'package:flutter/material.dart';
+import 'package:project_flutter/authentication.dart';
 import 'package:project_flutter/model/user.dart';
 import 'package:project_flutter/routing_constants.dart';
 import 'package:project_flutter/theme_helper.dart';
+import 'package:project_flutter/utils/database_helper.dart';
 
-class LogOut extends StatefulWidget {
-  const LogOut({ Key? key }) : super(key: key);
 
-  @override
-  _LogOutState createState() => _LogOutState();
-}
-
-class _LogOutState extends State<LogOut> {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child:Align(
-        alignment: Alignment.topRight,
-        child: ElevatedButton(
-                                style: ThemeHelper().buttonStyle(),
-                                child: Padding(
-                                  padding: EdgeInsets.fromLTRB(40, 10, 40, 10),
-                                  child: Text('Log Out'.toUpperCase(), style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),),
-                                ),
-                                onPressed:() {
-                                  Navigator.pushNamed(context,SecondViewRoute);
-                                }
-        ,
-      )
-       ) ,
-      
-    );
-  }
-}
-class SecondScreen extends StatelessWidget {
+class SecondScreen extends StatefulWidget {
   //User u=new User();
+  //final String_message =ModalRoute.of(context)!.settings.arguments;
+  //SecondScreen({Key? key,  required String userName,required this.user,}) : super(key: key);
   final User user;
-  SecondScreen({ required String userName,required this.user});
+  String userName;
+  SecondScreen(  
+   
+    { Key? key, required this.userName,required this.user}    
+    
+    ):super(key: key);
+  late DatabaseHelper db;
   
-   @override
+  
+  
+
+  @override
+  State<SecondScreen> createState() => _SecondScreenState();
+}
+
+class _SecondScreenState extends State<SecondScreen> {
+   
+    @override
    Widget build(BuildContext context) {
     bool res;
     return Material(
       
-    child: 
+    child:
+   
     Column(children: [
+       SizedBox(height: 50,) ,
+       Container(
+         width: 155,
+         height:55,
+          decoration: ThemeHelper().buttonBoxDecoration(context),
+      //child://Align(
+        //alignment: Alignment.topRight,
+        margin: EdgeInsets.only(left:210, top:10,right:0),
+        
+        child: ElevatedButton(
+                                style: ThemeHelper().buttonStyle(),
+                                child: Padding(
+                                  padding: EdgeInsets.fromLTRB(40, 10, 40, 10),
+                                  child: Text('Log Out'.toUpperCase(), style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.white),),
+                                ),
+                                onPressed:() {
+                                  Navigator.pushNamed(context,LoginViewRoute);
+                                }
+        ,
+      )
+       //) ,
+      
+    ),
       Container(
       //margin: EdgeInsets.only(left:20.0, top:10,right:90),
       child:Row(
         children: [
            Align(
-          alignment: Alignment.topCenter,
+          alignment: Alignment.topLeft,
           child: Padding(
             padding: const EdgeInsets.all(50),
             child: CircleAvatar(
@@ -63,15 +80,19 @@ class SecondScreen extends StatelessWidget {
             ),
           ),
            ),
+           
            Column(children: [
-             new Text(user.userName,style:TextStyle(fontSize: 28, color: Colors.black) ,),
+             
+             new Text(widget.userName,style:const TextStyle(fontSize: 28, color: Colors.black) ,),
           new Text("India",style:TextStyle(fontSize: 22, color: Colors.black)),
            ],),
+           
                       
         ],
         
       ),
     ),
+     
     //SizedBox( height:0),
     Container(
       
@@ -429,11 +450,12 @@ class SecondScreen extends StatelessWidget {
      )
     ],
      ) 
-     
+      
 
  );
-    
-    
+  
+  
 
 }
- }
+
+}

@@ -24,14 +24,6 @@ class _SignUpPageState extends State<SignUpPage>{
   final  _formKey = GlobalKey<FormState>();
   User userL = new User( userName: '', password: '', email: '',);
   Auth auth = new Auth();
-  void showMessage(BuildContext context)
-  {
-    Scaffold.of(context).showSnackBar(
-      SnackBar(content:Text('Login Unsuccessful'))
-    );
-  }
-  
-
   @override
   Widget build(BuildContext context) {
 
@@ -59,7 +51,7 @@ class _SignUpPageState extends State<SignUpPage>{
                       'Signup into your account',
                       style: TextStyle(color: Colors.grey),
                     ),
-                    SizedBox(height: 30.0),
+                    SizedBox(height: 20.0),
                     Form(
                       key: _formKey,
                         child: Column(
@@ -83,7 +75,7 @@ class _SignUpPageState extends State<SignUpPage>{
                               ),
                               decoration: ThemeHelper().inputBoxDecorationShaddow(),
                             ),
-                            SizedBox(height: 30.0),
+                            SizedBox(height: 20.0),
                             Container(
                               child: TextFormField(
                                 obscureText: true,
@@ -111,7 +103,7 @@ class _SignUpPageState extends State<SignUpPage>{
                               ),
                               decoration: ThemeHelper().inputBoxDecorationShaddow(),
                             ),
-                            SizedBox(height: 15.0),
+                            SizedBox(height: 20.0),
                             Container(
                               child: TextFormField(
                                 obscureText: true,
@@ -136,7 +128,10 @@ class _SignUpPageState extends State<SignUpPage>{
                               ),
                               decoration: ThemeHelper().inputBoxDecorationShaddow(),
                             ),
-                            SizedBox(height: 30.0),
+                            
+                            SizedBox(height: 20.0),
+                            
+                            SizedBox(height: 20.0),
                             Container(
                               child: TextFormField(
                                 //obscureText: true,
@@ -154,12 +149,10 @@ class _SignUpPageState extends State<SignUpPage>{
                                   userL.email=value!;
                                 }
                                 
-                                
-                              
                               ),
                               decoration: ThemeHelper().inputBoxDecorationShaddow(),
                             ),
-                            SizedBox(height: 15.0),
+                            SizedBox(height: 20.0),
                             Container(
                               decoration: ThemeHelper().buttonBoxDecoration(context),
                               child: ElevatedButton(
@@ -185,6 +178,7 @@ class _SignUpPageState extends State<SignUpPage>{
                                 
                               ),
                             ),
+                            
                            
                            
                           ],

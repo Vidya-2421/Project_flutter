@@ -14,6 +14,8 @@ class DatabaseHelper{
   static final _columnUserName='userName';
   static final _columnEmail='email';
   static final _columnPAssword='password';
+  
+
 
   DatabaseHelper._privateConstructor();
   static final DatabaseHelper instance=DatabaseHelper._privateConstructor();
@@ -44,6 +46,7 @@ class DatabaseHelper{
         $_columnUserName text not null,
         $_columnEmail text not null,
         $_columnPAssword text not null
+        
       )
       '''
     );
@@ -53,14 +56,18 @@ class DatabaseHelper{
     await db?.insert(_tableName,row);
   }
 
-  Future<List<User>> getAll() async{
+  Future <List<User>> getAll() async{
     Database? db=await instance.database;
     List<Map<String, dynamic>> list= await db!.query(_tableName);
     List<User> res=[];
     list.forEach((element) {
-      User user=User(userName: element['userName'],  email: element['email'], password: element['password']);
+      User user=User(userName: element['userName'],  email: element['email'], password: element['password'],);
       res.add(user);
      });
      return res;
   }
+ 
 }
+
+ 
+  
